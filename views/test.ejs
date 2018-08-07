@@ -15,19 +15,18 @@
           <th>Status</th>
         </tr>
       </thead>
-      <!-- <tbody>
-        {% for entry in data %}
-        <div id="entrySection{{entry.id}}">
-          <tr>                  
-            <td> </td>  
-            <td> {{ entry.signal_id }} </td>
-            <td> {{entry.date}} </td>
-            <td> {{entry.time}} </td>
-            <td> {{entry.address}} </td>
-          </tr>
-        </div>
-        {% endfor %}
-      </tbody> -->
+      <tbody>
+        <% data.forEach(function(item) {%>
+            <tr>                  
+                <td> <%=item.name %> </td>  
+                <td> <%=item.address %> </td>
+                <td> <%=item.number %> </td>  
+                <td> <%=item.email %> </td>
+                <td> <%=item.work %> </td>  
+                <td> <%=item.status %> </td>                
+              </tr>
+        <% }); %>
+      </tbody>
     </table>
   </div>
 

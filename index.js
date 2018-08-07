@@ -13,15 +13,7 @@ var con = mysql.createConnection({
     password: "123456b",
     database: "mydb"
 });
-function getResult(){
-    con.connect(function(err) {
-        if (err) throw err;
-        con.query("SELECT * FROM customers", function (err, result, fields) {
-            if (err) throw err;
-            return result;
-        });
-    });
-} 
+
 
 
 app.get('/', function (req, res) {
@@ -29,8 +21,14 @@ app.get('/', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-    obj = getResult();
-    res.render('test', {test_content: 'Test page', data: obj});    
+   
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT * FROM customers", function (err, result, fields) {
+            if (err) throw err;
+            res.render('test', {test_content: 'Test page', data: result}); 
+        });
+    });     
 });
 
 app.listen(3000, '127.0.0.1')
