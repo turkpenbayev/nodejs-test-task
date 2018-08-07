@@ -23,12 +23,14 @@ app.get('/', function (req, res) {
 app.get('/test', function (req, res) {
    
     con.connect(function(err) {
-        if (err) throw err;
         con.query("SELECT * FROM customers", function (err, result, fields) {
-            if (err) throw err;
-            res.render('test', {test_content: 'Test page', data: result}); 
+            if (err){
+                console.log('error');
+            }else{
+                res.render('test', {test_content: 'Test page', data: result}); 
+            }
         });
-    });     
+    });   
 });
 
 app.listen(4444, function () {
